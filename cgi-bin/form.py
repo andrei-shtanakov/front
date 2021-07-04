@@ -7,11 +7,11 @@ from apiclient import APIClient
 class MyClient(APIClient):
 
     def list_documents(self):
-        url = "http://192.168.1.26:8000/api/docs/"
+        url = "http://18.196.23.134:8000/api/docs/"
         return self.get(url)
 
     def add_document(self, document_info):
-        url = "http://192.168.1.26:8000/api/docs/"
+        url = "http://18.196.23.134:8000/api/docs/"
         return self.post(url, data=document_info)
 
 client = MyClient()
