@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+ <form action="all_planetsi">
+  <p><b>List of Planets:</b><Br>
+  {% if planet_s %}
+    {% for planet in planet_s %}
+    <pre> {{ planet[0] }}, {{ planet[1] }}, {{ planet[2] }}, {{ planet[3] }}, {{ planet[4] }}</pre>
+    {% endfor %}
+  {% else %}
+     DataBase is empty
+  {% endif %}
+  </p>
+</form>
+{% endblock %}
+

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="people">
+  <p><b>Character description:</b><Br>
+    {% if personal %}
+     <pre>Name:       {{ personal[0] }} </pre>
+     <pre>Gender:     {{ personal[1] }} </pre>
+     <pre>Height:     {{ personal[2] }} </pre>
+     <pre>Mass:       {{ personal[3] }} </pre>
+     <pre>Hair color: {{ personal[4] }} </pre>
+     <pre>Eye color:  {{ personal[5] }} </pre>
+     <pre>Birth year: {{ personal[6] }} </pre>
+     <pre>Homeworld:  {{ personal[7] }} </pre>
+    {% else %}
+    Kenny looks okay --- so far
+    {% endif %}
+   </p>
+</form>
+{% endblock %}

@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Front REST API</title>
+</head>
+
+<body>
+<form action="all_planets">
+  <p><b>Show All Planets</b><Br>
+    <input type="submit">
+  </p>
+</form>
+
+<form action="all_people">
+  <p><b>Show All People</b><Br>
+    <input type="submit">
+  </p>
+</form>
+
+<form action="/">
+  <p><b>Home page</b><Br>
+    <input type="submit">
+  </p>
+</form>
+
+<form action="/planet"  method = "POST">
+  <p><b>Show details of Planet:</b><Br>
+    <select name="plan">
+    {% if items %}
+    {% for key, value in items %}
+       <option value={{ key }}>{{ value }}</option>
+    {% endfor %}
+    {% endif %}
+    </select><Br>
+    <input type="submit">
+  </p>
+</form>
+
+<form action="/people" method = "POST">
+  <p><b>Show details of Character:</b><Br>
+    <select name="pipl">
+    {% if piple %}
+    {% for key, value in piple %}
+       <option value={{ key }}>{{ value }}</option>
+    {% endfor %}
+    {% endif %}
+   </select><Br>
+   <input type="submit">
+  </p>
+</form>
+    {% block content %}{% endblock %}
+</body>
+</htm>

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="all_people">
+  <p><b>List of Characters:</b><Br>
+  {% if character %}
+    {% for charact in character %}
+    <pre> {{ charact[0] }}, {{ charact[1] }}, {{ charact[2] }}, {{ charact[3] }}, {{ charact[4] }}</pre>
+    {% endfor %}
+  {% else %}
+    The DataBase is emty
+  {% endif %}
+  </p>
+</form>
+{% endblock %}
+

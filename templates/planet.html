@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="planet">
+  <p><b>Planet description:</b><Br>
+    {% if planet %}
+     <pre>Name:       {{ planet[0] }} </pre>
+     <pre>Gravity:    {{ planet[1] }} </pre>
+     <pre>Climate:    {{ planet[2] }} </pre>
+     <pre>Terran:     {{ planet[3] }} </pre>
+    {% else %}
+      DataBase is empty
+    {% endif %}
+   </p>
+   <p><b>Population:</b><Br>
+  {% if population %}
+    {% for charact in population %}
+    <pre>         {{ charact[0] }}, {{ charact[1] }}, {{ charact[2] }}, {{ charact[3] }}, {{ charact[4] }}</pre>
+    {% endfor %}
+  {% else %}
+    The DataBase is emty
+  {% endif %}
+  </p>
+</form>
+
+{% endblock %}
