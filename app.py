@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
+import os
 import cgi
 import json
 import requests
 import html
 from flask import Flask, request, render_template
+
+
+url_back = os.environ.get('URL_BACK_ENV')
 
 
 dict_people = {}
@@ -14,12 +18,12 @@ def init_data():
     count_planet  = 0
     
 
-    people = requests.get("http://192.168.8.102:8000/api/people/")
+    people = requests.get("{}/api/people/".fopmat(url_back))
     for i  in range(len(people.json())):
         dict_people.update({people.json()[i].get('id'): people.json()[i].get('name')})
         count_person  += 1
 
-    planets = requests.get("http://192.168.8.102:8000/api/planets/")
+    planets = requests.get("{}/api/planets/".fopmat(url_back))
     for i  in range(len(planets.json())):
         dict_planets.update({planets.json()[i].get('id'): planets.json()[i].get('name')})
         count_planet += 1
@@ -38,7 +42,7 @@ def header():
 @app.route('/all_people')
 def all_people():
     characters = []
-    people = requests.get("http://192.168.8.102:8000/api/people/")
+    people = requests.get("{}/api/people/".fopmat(url_back))
     for i  in range(len(people.json())):
         characters.append([people.json()[i].get('id'),
                            people.json()[i].get('name'),
@@ -55,7 +59,7 @@ def all_people():
 @app.route('/all_planets')
 def all_planets():
     planets = []
-    planet = requests.get("http://192.168.8.102:8000/api/planets/")
+    planet = requests.get("{}/api/planets/".fopmat(url_back))
     for i  in range(len(planet.json())):
         planets.append([planet.json()[i].get('id'),
                         planet.json()[i].get('name'),
@@ -74,7 +78,7 @@ def person():
         print(id)
     #    print(request.form.get(id))
         person = []
-        people = requests.get("http://192.168.8.102:8000/api/people/{}/".format(id))
+        people = requests.get("{}/api/people/{}/".format(url_back, id))
         person.append(people.json().get('name'))
         person.append(people.json().get('gender'))
         person.append(people.json().get('height'))
@@ -92,13 +96,13 @@ def planet():
         id = ids[0]
         print(id)
         plan = []
-        planet = requests.get("http://192.168.8.102:8000/api/planets/{}".format(id))
+        planet = requests.get("{}/api/planets/{}".format(url_back, id))
         plan.append(planet.json().get('name'))
         plan.append(planet.json().get('gravity'))
         plan.append(planet.json().get('climate'))
         plan.append(planet.json().get('terran'))
         characters = []
-        people = requests.get("http://192.168.8.102:8000/api/population/{}/".format(id))
+        people = requests.get("{}/api/population/{}/".format(url_back, id))
         for i  in range(len(people.json())):
             characters.append([people.json()[i].get('id'),
                            people.json()[i].get('name'),
